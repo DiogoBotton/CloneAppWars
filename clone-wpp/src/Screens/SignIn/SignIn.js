@@ -2,6 +2,7 @@ import { View, Text, Image, TextInput, Button } from 'react-native'
 import React, { useContext, useState } from 'react'
 import Context from "../../Context/Context";
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { SignInAuth, SignUp } from '../../Auth/Auth';
 
 export default function SignIn() {
     const { theme: { colors } } = useContext(Context);
@@ -10,8 +11,16 @@ export default function SignIn() {
     const [password, setPassword] = useState("");
     const [mode, setMode] = useState("Registrar");
 
-    const Auth = () => {
+    const AlterMode = () => {
+        mode == "Registrar" ? setMode("Entrar") : setMode("Registrar");
+        mode == "Entrar" ? setMode("Registrar") : setMode("Entrar");
+    }
 
+    const Auth = () => {
+        if(mode == "Registrar")
+            SignUp(email, password);
+        if(mode == "Entrar")
+            SignInAuth(email, password)
     }
 
     return (
@@ -43,14 +52,14 @@ export default function SignIn() {
                     style={{
                         borderBottomColor: colors.primary,
                         borderBottomWidth: 2,
-                        width: 200,
+                        width: 220,
                         marginTop: 20,
                     }} />
                 <TextInput placeholder='Senha' onChangeText={setPassword} secureTextEntry value={password}
                     style={{
                         borderBottomColor: colors.primary,
                         borderBottomWidth: 2,
-                        width: 200,
+                        width: 220,
                         marginTop: 20,
                     }} />
                 <View style={{ marginTop: 20 }}>
@@ -61,8 +70,11 @@ export default function SignIn() {
                         onPress={Auth}
                     />
                 </View>
-                <TouchableOpacity style={{marginTop: 20}}>
-                    <Text>{mode == "Registrar" ? "Já tem uma conta? Faça Login!" : "Não tem uma conta? Registre-se!"}</Text>
+                <TouchableOpacity style={{ marginTop: 20 }} onPress={AlterMode}>
+                    <Text style={{
+                        color: colors.secondaryText
+                    }}
+                    >{mode == "Registrar" ? "Já tem uma conta? Faça Login!" : "Não tem uma conta? Registre-se!"}</Text>
                 </TouchableOpacity>
             </View>
         </View>
