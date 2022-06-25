@@ -1,21 +1,49 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { Text } from "react-native";
+import React, { useContext } from 'react'
+import Context from "./Context/Context";
 
 // Screens
 import SignIn from "./Screens/SignIn/SignIn";
+import Profile from "./Screens/Profile/Profile";
+import Home from "./Screens/Home/Home";
 
 const Stack = createStackNavigator();
 
 export default function Routes(props) {
-    return(
+    const { theme: { colors } } = useContext(Context);
+
+    return (
         <NavigationContainer>
             {!props.currentUser ? (
-                <Stack.Navigator screenOptions={{headerShown: false}}>
-                    <Stack.Screen name="signIn" component={SignIn} />
+                <Stack.Navigator screenOptions={{ headerShown: false }}>
+                    <Stack.Screen
+                        name="signIn"
+                        component={SignIn}
+                    />
                 </Stack.Navigator>
             ) : (
-                <Text>Olá!</Text>
+                <Stack.Navigator screenOptions={{
+                    headerStyle: {
+                        backgroundColor: colors.foreground,
+                        shadowOpacity: 0,
+                        elevation: 0
+                    },
+                    headerTintColor: colors.white
+                }}>
+                    {!props.currentUser.displayName && (
+                        <Stack.Screen
+                            name="profile"
+                            component={Profile}
+                            options={{ headerShown: false }}
+                        />
+                    )}
+                    <Stack.Screen
+                        name="home"
+                        component={Home}
+                        options={{ title: "WhatsApp" }}
+                    />
+                </Stack.Navigator>
             )}
         </NavigationContainer>
     );

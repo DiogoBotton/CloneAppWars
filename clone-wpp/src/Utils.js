@@ -1,3 +1,33 @@
+import * as ImagePicker from "expo-image-picker";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { storage } from "../firebase";
+import { nanoid } from "nanoid"
+import "react-native-get-random-values"
+
+// Escolher imagem
+export async function pickImage() {
+    let result = ImagePicker.launchCameraAsync();
+    return result;
+}
+
+// Requisitar permissão da camêra
+export async function askForPermission() {
+    const { status } = await ImagePicker.requestCameraPermissionsAsync();
+    return status;
+}
+
+// Upload de imagem para firebase
+export async function uploadImage(file, path, fName) {
+    const fileName = fName || nanoid();
+    const storageRef = ref(storage, `${path}/${fileName}`);
+
+    const snapshot = await uploadBytes(storageRef, file);
+
+    const url = await getDownloadURL(snapshot.ref);
+
+    return { url, fileName };
+}
+
 const palette = {
     tealGreen: "#128c7e",
     tealGreenDark: "#075e54",
