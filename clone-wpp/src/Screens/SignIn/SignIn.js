@@ -52,14 +52,14 @@ export default function SignIn() {
                     style={{
                         borderBottomColor: colors.primary,
                         borderBottomWidth: 2,
-                        width: 220,
+                        width: 280,
                         marginTop: 20,
                     }} />
                 <TextInput placeholder='Senha' onChangeText={setPassword} secureTextEntry value={password}
                     style={{
                         borderBottomColor: colors.primary,
                         borderBottomWidth: 2,
-                        width: 220,
+                        width: 280,
                         marginTop: 20,
                     }} />
                 <View style={{ marginTop: 20 }}>

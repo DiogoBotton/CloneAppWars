@@ -4,7 +4,7 @@ import Context from "../../Context/Context";
 import { StatusBar } from 'expo-status-bar';
 import Constants from 'expo-constants';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { pickImage, askForPermission } from "../../Utils";
+import { pickImage, askPermissionForCamera } from "../../Utils";
 import { auth, db } from "../../../firebase";
 import { updateProfile } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
@@ -20,7 +20,7 @@ export default function Profile() {
 
     useEffect(() => {
         (async () => {
-            const status = await askForPermission();
+            const status = await askPermissionForCamera();
             setPermissionCameraStatus(status);
         })();
     }, [])

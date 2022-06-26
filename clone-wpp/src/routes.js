@@ -7,6 +7,7 @@ import Context from "./Context/Context";
 import SignIn from "./Screens/SignIn/SignIn";
 import Profile from "./Screens/Profile/Profile";
 import Home from "./Screens/Home/Home";
+import Contacts from "./Screens/Contacts/Contacts";
 
 const Stack = createStackNavigator();
 
@@ -42,6 +43,11 @@ export default function Routes(props) {
                         name="home"
                         component={Home}
                         options={{ title: "WhatsApp" }}
+                    />
+                    <Stack.Screen
+                        name="contacts"
+                        component={Contacts}
+                        options={{ title: "Contatos" }}
                     />
                 </Stack.Navigator>
             )}
