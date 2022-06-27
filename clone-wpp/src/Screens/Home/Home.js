@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native'
 import React, { useContext } from 'react'
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import Chats from "../Chats/Chats";
+import Chats from "../ChatList/Chats";
 import Photo from "../Photo/Photo";
 import { Ionicons } from '@expo/vector-icons';
 import Context from "../../Context/Context";

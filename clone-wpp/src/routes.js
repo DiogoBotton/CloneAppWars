@@ -2,12 +2,14 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import React, { useContext } from 'react'
 import Context from "./Context/Context";
+import ChatHeader from "./Components/ChatHeader/ChatHeader";
 
 // Screens
 import SignIn from "./Screens/SignIn/SignIn";
 import Profile from "./Screens/Profile/Profile";
 import Home from "./Screens/Home/Home";
 import Contacts from "./Screens/Contacts/Contacts";
+import Chat from "./Screens/Chat/Chat";
 
 const Stack = createStackNavigator();
 
@@ -48,6 +50,11 @@ export default function Routes(props) {
                         name="contacts"
                         component={Contacts}
                         options={{ title: "Contatos" }}
+                    />
+                    <Stack.Screen
+                        name="chat"
+                        component={Chat}
+                        options={{ headerTitle: (props) => <ChatHeader {...props} /> }}
                     />
                 </Stack.Navigator>
             )}

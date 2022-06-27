@@ -33,7 +33,7 @@ export default function Contacts() {
 
 const ContactPreview = (contact) => {
     const [user, setUser] = useState(contact);
-    const { rooms } = useContext(GlobalContext);
+    const { rooms, unfilteredRooms } = useContext(GlobalContext);
 
     useEffect(() => {
         const q = query(
@@ -51,7 +51,7 @@ const ContactPreview = (contact) => {
 
     return (
         <ListItem
-            room={rooms.find(r => rooms.participantsArray.includes(contact.email))}
+            room={unfilteredRooms.find(r => r.participantsArray.includes(contact.contact.email))}
             user={user}
             type="contacts"
             style={{
