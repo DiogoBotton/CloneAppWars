@@ -7,11 +7,11 @@ import GlobalContext from '../../Context/Context';
 export default function ChatHeader() {
     const route = useRoute();
     const { theme: { colors } } = useContext(GlobalContext);
-
+    
     return (
         <View style={{ flexDirection: 'row' }}>
             <View>
-                <Avatar size={40} user={route.params.user.userDoc} />
+                <Avatar size={40} user={route.params.user.userDoc ? route.params.user.userDoc : route.params.user} />
             </View>
             <View style={{
                 marginLeft: 15,
@@ -22,7 +22,7 @@ export default function ChatHeader() {
                     color: colors.white,
                     fontSize: 18
                 }}>
-                    {route.params.user.contact.contactName || route.params.user.userDoc.displayName}
+                    {route.params.user.contactName || route.params.user.contact.contactName || route.params.user.userDoc.displayName}
                 </Text>
             </View>
         </View>

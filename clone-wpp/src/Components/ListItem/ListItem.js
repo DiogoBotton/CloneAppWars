@@ -32,7 +32,7 @@ export default function ListItem({
                     alignItems: 'center',
                     justifyContent: 'center'
                 }}>
-                    <Avatar user={user.userDoc ? user.userDoc : user} size={type == "contacts" ? 65 : 75} />
+                    <Avatar user={user.userDoc ? user.userDoc : user} size={type == "contacts" ? 65 : 70} />
                 </Col>
                 <Col style={{ marginLeft: 10 }}>
                     <Row style={{ alignItems: "center" }}>
@@ -40,7 +40,7 @@ export default function ListItem({
                             <Text
                                 style={{ fontWeight: "bold", fontSize: 16, color: colors.text }}
                             >
-                                {user.contact.contactName ? user.contact.contactName : user.userDoc.displayName}
+                                {user.contactName || user.contact.contactName || user.userDoc.displayName}
                             </Text>
                         </Col>
                         {time && (

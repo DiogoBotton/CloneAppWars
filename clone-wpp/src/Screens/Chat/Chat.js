@@ -42,7 +42,7 @@ export default function Chat() {
                     email: currentUser.email
                 }
 
-                if (currUserData.photoURL)
+                if (currentUser.photoURL)
                     currUserData.photoURL = currentUser.photoURL
 
                 const userBData = {
